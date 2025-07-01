@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(title = ${post.spec.title}, header = ~{modules/header::header}, content = ~{::content})}"
+>
+  <div th:fragment="content" class="px-4">
+    <div class="grid grid-cols-12">
+      <!-- Post Content -->
+      <div class="col-span-12">
+        <main>
+          <article id="post-content" class="write mb-20">
+            <h1 th:text="${post.spec.title}" style="margin-bottom: 0rem"></h1>
+            <p th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}" class="text-center text-sm mt-2 mb-8"></p>
+            <th:block th:utext="${post.content.content}" />
+          </article>
+        </main>
+        <th:block th:if="${haloCommentEnabled}">
+          <halo:comment
+            group="content.halo.run"
+            kind="Post"
+            th:name="${post.metadata?.name}"
+            colorScheme="commentColorScheme"
+          />
+        </th:block>
+      </div>
+    </div>
+
+    <!-- TOC Sidebar -->
+    <aside id="toc-sidebar" class="toc-sidebar">
+      <div class="toc-toggle">
+        <button id="toc-toggle-btn" aria-label="展开/收起目录">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="toc-overlay" id="toc-overlay"></div>
+      <div class="toc-panel">
+        <div class="toc-header">
+          <h3>目录</h3>
+          <button id="toc-close" aria-label="关闭">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <nav id="toc-nav" class="toc-nav"></nav>
+      </div>
+    </aside>
+  </div>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html th:fragment="html (title, header, content)">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/assets/dist/style.css(v=${theme.spec.version})}" />
+    <script th:src="@{/assets/dist/main.iife.js(v=${theme.spec.version})}"></script>
+    <script th:inline="javascript">
+      window.addEventListener("load", function () {
+        if (/*[[${theme.config.global.enable_resize_image}]]*/ false) {
+          main.enableResizeImage();
+        }
+      });
+    </script>
+  </head>
+
+  <body 
+    x-data="prefersColorScheme" 
+    x-bind:class="`${colorScheme} min-h-screen flex flex-col`"
+    th:data-theme-mode="${theme.config.global.theme_mode ?: 'auto'}"
+  >
+    <main class="flex-grow">
+      <div>
+        <th:block th:replace="${header}" />
+        <div th:insert="${content}" class="mx-auto px-4 sm:px-6 lg:px-8 max-w-840px mt-40px"></div>
+      </div>
+    </main>
+    <th:block th:replace="~{modules/footer::footer}" />
+  </body>
+</html>

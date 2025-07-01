@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(title = 'Archives', header = ~{modules/header::header}, content = ~{::content})}"
+>
+  <th:block th:fragment="content">
+    <div class="write px-4">
+      <div>
+        <h3>Archives</h3>
+        <div th:each="archive : ${archives}">
+          <h2 th:text="${archive.year}"></h2>
+          <ul class="flex-auto">
+            <th:block th:each="month : ${archive.months}">
+              <li class="line-height-loose" th:each="post : ${month.posts}">
+                <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}" class="no-underline"></a>
+                <span th:text="${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}" class="ml-1.5 text-sm"></span>
+              </li>
+            </th:block>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </th:block>
+</html>

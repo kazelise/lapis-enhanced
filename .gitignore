@@ -1,0 +1,68 @@
+# Build outputs
+/templates/assets/dist/
+node_modules/
+dist/
+dist-ssr/
+build/
+.gradle/
+
+# Development files
+.DS_Store
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Package manager
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.local
+
+# Claude related files
+CLAUDE.md
+**/CLAUDE.md
+
+# Blog project (unrelated to theme)
+/Blog/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.temp/
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE specific
+*.swp
+*.swo
+*~
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.project
+.classpath
+.settings/
+
+# Theme specific ignores
+*.backup
+*.orig
+.sass-cache/

@@ -1,0 +1,21 @@
+apiVersion: theme.halo.run/v1alpha1
+kind: Theme
+metadata:
+  name: halo-theme-lapis
+spec:
+  displayName: Lapis
+  author:
+    name: Azite
+    website: https://github.com/Aziteee
+  description: A clean Halo theme in blue tones
+  logo: /themes/halo-theme-lapis/assets/images/logo.png
+  homepage: https://github.com/Aziteee/halo-theme-lapis#readme
+  repo: https://github.com/Aziteee/halo-theme-lapis
+  issues: https://github.com/Aziteee/halo-theme-lapis/issues
+  settingName: "halo-theme-lapis-setting"
+  configMapName: "halo-theme-lapis-configMap"
+  version: 1.1.0-preview.4
+  requires: ">=2.0.0"
+  license:
+    - name: "GPL-3.0"
+      url: "https://github.com/Aziteee/halo-theme-lapis/blob/main/LICENSE"
