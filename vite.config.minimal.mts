@@ -6,7 +6,9 @@ import UnoCSS from "unocss/vite";
 
 export default defineConfig({
   plugins: [
-    UnoCSS(),
+    UnoCSS({
+      configFile: "./uno.minimal.config.ts"
+    }),
     {
       name: "watch-templates",
       async buildStart() {
@@ -26,7 +28,12 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
+        dead_code: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug']
       },
+      mangle: {
+        toplevel: true
+      }
     },
     rollupOptions: {
       output: {
@@ -35,6 +42,8 @@ export default defineConfig({
       },
       treeshake: {
         moduleSideEffects: false,
+        propertyReadSideEffects: false,
+        tryCatchDeoptimization: false
       },
     },
     lib: {

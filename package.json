@@ -27,6 +27,7 @@
   ],
   "scripts": {
     "build": "tsc && vite build",
+    "build:min": "tsc && vite build --config vite.config.minimal.mts",
     "dev": "vite build --watch",
     "lint": "eslint ./src --ext .js,.cjs,.mjs,.ts,.cts,.mts --ignore-path .gitignore",
     "prepare": "husky",
@@ -48,8 +49,10 @@
     "eslint-plugin-prettier": "^4.2.1",
     "fast-glob": "^3.3.2",
     "husky": "^9.0.11",
+    "lightningcss": "^1.30.1",
     "lint-staged": "^15.2.2",
     "prettier": "^2.8.8",
+    "terser": "^5.43.1",
     "typescript": "^4.9.5",
     "unocss": "^0.64.0",
     "vite": "^5.1.6"
