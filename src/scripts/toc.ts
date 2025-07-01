@@ -5,7 +5,6 @@
 class LeftSidebarTOC {
   private allHeadings: HTMLElement[] = [];
   private tocHeadings: HTMLElement[] = [];
-  private h1Count: number = 0;
   private isOpen: boolean = false;
   private activeId: string = '';
   private observer: IntersectionObserver | null = null;
@@ -16,14 +15,12 @@ class LeftSidebarTOC {
   private toggleBtn: HTMLElement | null = document.getElementById('toc-toggle-btn');
   private closeBtn: HTMLElement | null = document.getElementById('toc-close');
   private overlay: HTMLElement | null = document.getElementById('toc-overlay');
-  private panel: HTMLElement | null = null;
 
   public init(): void {
     if (!this.sidebar || !this.nav || !this.toggleBtn) {
       return;
     }
 
-    this.panel = this.sidebar.querySelector('.toc-panel');
     this.scanHeadings();
 
     if (this.allHeadings.length === 0 || this.tocHeadings.length === 0) {
@@ -47,8 +44,6 @@ class LeftSidebarTOC {
     if (!content) return;
 
     this.allHeadings = Array.from(content.querySelectorAll<HTMLElement>('h1, h2, h3, h4, h5, h6'));
-    
-    this.h1Count = content.querySelectorAll<HTMLElement>('h1').length;
 
     this.tocHeadings = this.allHeadings
       .filter(el => ['H1', 'H2', 'H3'].includes(el.tagName))
@@ -106,7 +101,7 @@ class LeftSidebarTOC {
   private setupScrollTracking(): void {
     // Use both Intersection Observer and scroll event for better responsiveness
     this.observer = new IntersectionObserver(
-      (entries) => {
+      () => {
         this.updateActiveHeading();
       },
       { 
